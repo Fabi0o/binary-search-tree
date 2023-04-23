@@ -18,6 +18,28 @@ export default class Tree {
       this.print(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
     }
   }
+
+  insert(n) {
+    let curr = this.root;
+
+    while (curr.value != n) {
+      if (curr.value > n) {
+        if (curr.left) curr = curr.left;
+        else {
+          curr.left = new Node(n);
+          return;
+        }
+      } else if (curr.value < n) {
+        if (curr.right) curr = curr.right;
+        else {
+          curr.right = new Node(n);
+          return;
+        }
+      }
+    }
+
+    return;
+  }
 }
 
 const buildTree = (arr) => {
