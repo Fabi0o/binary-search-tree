@@ -20,4 +20,4 @@ const mergeSortedArrs = (arr1, arr2, result = []) => {
   return mergeSortedArrs(arr1, arr2, result);
 };
 
-console.log(mergeSort([1, 1, 1, 1, 1, 1, 1, 1, 2]));
+export default mergeSort;
