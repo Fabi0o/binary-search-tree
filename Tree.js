@@ -5,6 +5,18 @@ class Tree {
   constructor(arr) {
     this.root = buildTree(mergeSort(arr));
   }
+  print(node = this.root, prefix = "", isLeft = true) {
+    if (node === null) {
+      return;
+    }
+    if (node.right !== null) {
+      this.print(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
+    }
+    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.value}`);
+    if (node.left !== null) {
+      this.print(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
+    }
+  }
 }
 
 const buildTree = (arr) => {
@@ -33,5 +45,4 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 const binaryTree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 
-prettyPrint(binaryTree.root);
-// [1, 3, 4, 5, 7, 8, 9, 23, 67, 324, 6345];
+binaryTree.print();
