@@ -1,7 +1,7 @@
 export default class Node {
-  constructor(value, right = null, left = null) {
+  constructor(value, left = null, right = null) {
     this.value = value;
-    this.right = left;
     this.left = right;
+    this.right = left;
   }
 }
