@@ -37,8 +37,14 @@ export default class Tree {
         }
       }
     }
-
     return;
+  }
+
+  find(n, curr = this.root) {
+    if (!curr) return null;
+    if (curr.value > n) return this.find(n, curr.left);
+    else if (curr.value < n) return this.find(n, curr.right);
+    else if (curr.value == n) return curr;
   }
 }
 
