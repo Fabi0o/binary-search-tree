@@ -38,6 +38,14 @@ export default class Tree {
     else if (curr.value < n) return this.find(n, curr.right);
     else if (curr.value == n) return curr;
   }
+
+  #findParent(n, curr = this.root) {
+    if (n == curr.value) return null;
+    else if (n == curr.left.value || n == curr.right.value) return curr;
+
+    if (curr.value > n) return this.#findParent(n, curr.left);
+    else if (curr.value < n) return this.#findParent(n, curr.right);
+  }
 }
 
 const buildTree = (arr) => {
