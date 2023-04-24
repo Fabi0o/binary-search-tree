@@ -19,29 +19,21 @@ export default class Tree {
     }
   }
 
-  insert(n) {
-    let curr = this.root;
+  insert(n, curr = this.root) {
+    if (curr.value == n) return;
 
-    while (curr.value != n) {
-      if (curr.value > n) {
-        if (curr.left) curr = curr.left;
-        else {
-          curr.left = new Node(n);
-          return;
-        }
-      } else if (curr.value < n) {
-        if (curr.right) curr = curr.right;
-        else {
-          curr.right = new Node(n);
-          return;
-        }
-      }
+    if (curr.value > n) {
+      return curr.left ? this.insert(n, curr.left) : (curr.left = new Node(n));
+    } else if (curr.value < n) {
+      return curr.right
+        ? this.insert(n, curr.right)
+        : (curr.right = new Node(n));
     }
-    return;
   }
 
   find(n, curr = this.root) {
     if (!curr) return null;
+
     if (curr.value > n) return this.find(n, curr.left);
     else if (curr.value < n) return this.find(n, curr.right);
     else if (curr.value == n) return curr;
