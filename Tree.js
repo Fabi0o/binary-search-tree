@@ -31,6 +31,18 @@ export default class Tree {
     }
   }
 
+  delete(n) {
+    const node = this.find(n);
+    const parentNode = this.#findParent(n);
+
+    if (!node) return;
+
+    if (!node.left && !node.right)
+      parentNode.left.value == node.value
+        ? (parentNode.left = null)
+        : (parentNode.right = null);
+  }
+
   find(n, curr = this.root) {
     if (!curr) return null;
 
