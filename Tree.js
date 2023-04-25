@@ -93,6 +93,18 @@ export default class Tree {
 
     return this.#findClosestValue(node, curr.left);
   }
+
+  levelOrder(queue = [this.root], visited = []) {
+    if (!queue[0]) return visited;
+
+    visited.push(queue[0]);
+    if (queue[0].left) queue.push(queue[0].left);
+    if (queue[0].right) queue.push(queue[0].right);
+
+    queue.shift();
+
+    return this.levelOrder(queue, visited);
+  }
 }
 
 const buildTree = (arr) => {
