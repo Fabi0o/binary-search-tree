@@ -41,8 +41,28 @@ export default class Tree {
       parentNode.left.value == node.value
         ? (parentNode.left = null)
         : (parentNode.right = null);
-    else if (node.left && node.right) console.log(this.#findClosestValue(node));
-    else if (node.left)
+    else if (node.left && node.right) {
+      const closestValue = this.#findClosestValue(node);
+
+      if (!parentNode) {
+        this.delete(closestValue.value);
+        this.root = new Node(closestValue.value, node.left, node.right);
+      } else {
+        this.delete(closestValue.value);
+
+        parentNode.left.value == node.value
+          ? (parentNode.left = new Node(
+              closestValue.value,
+              node.left,
+              node.right
+            ))
+          : (parentNode.right = new Node(
+              closestValue.value,
+              node.left,
+              node.right
+            ));
+      }
+    } else if (node.left)
       parentNode.left.value == node.value
         ? (parentNode.left = node.left)
         : (parentNode.right = node.left);
