@@ -41,6 +41,15 @@ export default class Tree {
       parentNode.left.value == node.value
         ? (parentNode.left = null)
         : (parentNode.right = null);
+    else if (node.left && node.right) return;
+    else if (node.left)
+      parentNode.left.value == node.value
+        ? (parentNode.left = node.left)
+        : (parentNode.right = node.left);
+    else if (node.right)
+      parentNode.left.value == node.value
+        ? (parentNode.left = node.right)
+        : (parentNode.right = node.right);
   }
 
   find(n, curr = this.root) {
