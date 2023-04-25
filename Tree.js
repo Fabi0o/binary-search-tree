@@ -41,7 +41,7 @@ export default class Tree {
       parentNode.left.value == node.value
         ? (parentNode.left = null)
         : (parentNode.right = null);
-    else if (node.left && node.right) return;
+    else if (node.left && node.right) console.log(this.#findClosestValue(node));
     else if (node.left)
       parentNode.left.value == node.value
         ? (parentNode.left = node.left)
@@ -66,6 +66,12 @@ export default class Tree {
 
     if (curr.value > n) return this.#findParent(n, curr.left);
     else if (curr.value < n) return this.#findParent(n, curr.right);
+  }
+
+  #findClosestValue(node, curr = node.right) {
+    if (!curr.left) return curr;
+
+    return this.#findClosestValue(node, curr.left);
   }
 }
 
