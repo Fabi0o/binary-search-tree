@@ -153,6 +153,15 @@ export default class Tree {
     if (func) return this.#postOrderTraversal().map((node) => func(node));
     else return this.#postOrderTraversal().map((node) => node.value);
   }
+
+  height(node) {
+    if (!node) return -1;
+
+    const heightLeft = this.height(node.left) + 1;
+    const heightRight = this.height(node.right) + 1;
+
+    return heightLeft >= heightRight ? heightLeft : heightRight;
+  }
 }
 
 const buildTree = (arr) => {
