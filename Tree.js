@@ -108,6 +108,16 @@ export default class Tree {
 
     return this.levelOrder(func, queue, visited);
   }
+
+  #inOrderTraversal(root = this.root) {
+    if (!root) return [];
+
+    return [
+      ...this.#inOrderTraversal(root.left),
+      root,
+      ...this.#inOrderTraversal(root.right),
+    ];
+  }
 }
 
 const buildTree = (arr) => {
