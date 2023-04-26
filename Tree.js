@@ -123,6 +123,21 @@ export default class Tree {
     if (func) return this.#inOrderTraversal().map((node) => func(node));
     else return this.#inOrderTraversal().map((node) => node.value);
   }
+
+  #preOrderTraversal(root = this.root) {
+    if (!root) return [];
+
+    return [
+      root,
+      ...this.#preOrderTraversal(root.left),
+      ...this.#preOrderTraversal(root.right),
+    ];
+  }
+
+  preOrder(func = null) {
+    if (func) return this.#preOrderTraversal().map((node) => func(node));
+    else return this.#preOrderTraversal().map((node) => node.value);
+  }
 }
 
 const buildTree = (arr) => {
