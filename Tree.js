@@ -118,6 +118,11 @@ export default class Tree {
       ...this.#inOrderTraversal(root.right),
     ];
   }
+
+  inOrder(func = null) {
+    if (func) return this.#inOrderTraversal().map((node) => func(node));
+    else return this.#inOrderTraversal().map((node) => node.value);
+  }
 }
 
 const buildTree = (arr) => {
