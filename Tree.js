@@ -162,6 +162,14 @@ export default class Tree {
 
     return heightLeft >= heightRight ? heightLeft : heightRight;
   }
+
+  depth(node, curr = this.root) {
+    if (curr == node) return 0;
+
+    return node.value > curr.value
+      ? this.depth(node, curr.right) + 1
+      : this.depth(node, curr.left) + 1;
+  }
 }
 
 const buildTree = (arr) => {
