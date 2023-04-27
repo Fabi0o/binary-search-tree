@@ -170,6 +170,13 @@ export default class Tree {
       ? this.depth(node, curr.right) + 1
       : this.depth(node, curr.left) + 1;
   }
+
+  isBalanced() {
+    const heightDiff =
+      this.height(this.root.left) - this.height(this.root.right);
+
+    return !heightDiff || heightDiff == 1 || heightDiff == -1;
+  }
 }
 
 const buildTree = (arr) => {
