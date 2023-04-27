@@ -177,6 +177,12 @@ export default class Tree {
 
     return !heightDiff || heightDiff == 1 || heightDiff == -1;
   }
+
+  rebalance() {
+    if (this.isBalanced()) return;
+
+    this.root = buildTree(this.inOrder());
+  }
 }
 
 const buildTree = (arr) => {
